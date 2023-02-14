@@ -9,6 +9,13 @@ export default {
         return {
 
         };
+    },
+    methods: {
+        getRace(raceId) {
+            const race = {};
+
+            return race;
+        }
     }
 };
 </script>

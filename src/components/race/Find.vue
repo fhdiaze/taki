@@ -28,6 +28,7 @@
 <script>
 export default {
   data() {
+    //const races = client.post();
     return {
       races: this.callFind(),
     }

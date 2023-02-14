@@ -13,7 +13,7 @@ export default {
   },
   data() {
     return {
-      title: 'My First Vue App'
+      title: 'Challenges'
     }
   },
   methods: {
