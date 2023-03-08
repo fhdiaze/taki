@@ -1,16 +1,14 @@
 <template>
-  <div class="navbar">
+  <section class="navbar">
     <nav>
-      <router-link :to="{ name: 'Home' }">Home</router-link> |
-      <router-link :to="{ name: 'RaceFind' }">Race</router-link>
+      <router-link :to="{ name: 'RideList' }">Ride</router-link>
     </nav>
-  </div>
+  </section>
 </template>
 
 <script>
-import { useRouter } from 'vue-router'
-
 export default {
+  name: 'Navbar',
   setup() {
   }
 };
@@ -20,33 +18,22 @@ export default {
 .navbar {
   padding: 16px 10px;
   margin-bottom: 60px;
-  background: white;
 }
 
 nav {
-  display: flex;
   align-items: center;
+  font-weight: bold;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-#nav a {
+nav a {
   font-weight: bold;
   color: #2c3e50;
   padding: 10px;
 }
 
-#nav a.router-link-exact-active {
+nav a.router-link-exact-active {
   color: #42b983;
-}
-
-nav .links {
-  margin-left: auto;
-}
-
-nav .links a,
-button {
-  margin-left: 16px;
-  font-size: 14px;
 }
 </style>

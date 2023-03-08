@@ -1,0 +1,114 @@
+html {
+  font-family: 'Montserrat', sans-serif;
+}
+
+body {
+  margin: 0;
+  background: #efefef;
+}
+
+header {
+  background-color: #364552;
+  color: white;
+  text-align: center;
+}
+
+footer {
+  background-color: #364552;
+  padding: 1rem;
+  color: white;
+}
+
+footer section {
+  float: right;
+}
+
+footer p {
+  margin: 0;
+}
+
+footer a {
+  transition: color 0.3s ease;
+  color: white;
+  text-decoration: none;
+  padding: 3px;
+}
+
+footer a:hover {
+  color: cornflowerblue;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: solid 1px #aaa;
+  padding: 5px;
+}
+
+tr:nth-child(even) {
+  background-color: #aaa;
+}
+
+tr:hover {
+  background-color: #aaa;
+}
+
+
+h1 {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+  display: inline-block;
+}
+
+form {
+  background: white;
+  margin: 30px auto;
+  text-align: left;
+  padding: 40px;
+  border-radius: 10px;
+}
+
+label {
+  color: #aaa;
+  display: inline-block;
+  margin: 25px 0 15px;
+  font-size: 0.6em;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+input {
+  display: block;
+  color: #555;
+  padding: 10px 6px;
+  width: 50%;
+  border: none;
+  border-bottom: 1px solid #ddd;
+  box-sizing: border-box;
+}
+
+.error {
+  color: #ff0062;
+  margin-top: 10px;
+  font-size: 0.8em;
+  font-weight: bold;
+}
+
+.content {
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 0 20px;
+}
+
+.container {
+  width: 600px;
+  margin: 4px auto;
+}
+
+#app {
+  text-align: center;
+}

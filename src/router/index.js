@@ -1,25 +1,25 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import NotFound from '../components/NotFound.vue';
 import Home from '../views/Home.vue';
-import Find from '../views/race/Find.vue';
+import List from '../views/ride/List.vue';
 
 const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: List
   },
   {
-    path: '/race/find',
-    name: 'RaceFind',
-    component: Find,
+    path: '/ride/list',
+    name: 'RideList',
+    component: List,
   },
   {
     path: '/:catchAll(.*)',
     name: 'NotFound',
     component: NotFound,
   }
-]
+];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
