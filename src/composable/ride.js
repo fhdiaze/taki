@@ -1,32 +1,32 @@
 /**
- * Gets races that match a filter
+ * Gets rides that match a filter
  */
 const find = async (country) => {
   try {
-    const raceFindResponse = await fetch('http://localhost:7878/api/race.find');
-    const page = await raceFindResponse.json();
-    const races = page.items;
+    const response = await fetch('http://localhost:7878/api/race.find');
+    const page = await response.json();
+    const rides = page.items;
 
-    return races;
+    return rides;
   } catch (err) {
     console.log(err.message);
   }
 };
 
 /**
- * Gets the race with the specified id if any
+ * Gets the rides with the specified id if any
  */
-const get = async (raceId) => {
+const get = async (rideId) => {
   try {
-    const data = await fetch(`http://localhost:7878/api/race.get?raceId=${raceId}`);
+    const data = await fetch(`http://localhost:7878/api/race.get?raceId=${rideId}`);
 
     if (!data.ok) {
-      throw new Error('Error getting a race');
+      throw new Error('Error getting a ride');
     }
 
-    const race = await data.json();
+    const ride = await data.json();
 
-    return race;
+    return ride;
   } catch (err) {
     console.log(err.message);
   }

@@ -1,9 +1,9 @@
 <template>
   <Header />
   <Navbar />
-  <section class="content">
+  <main>
     <router-view />
-  </section>
+  </main>
   <Footer />
 </template>
 

@@ -6,7 +6,7 @@ import * as ride from '../../composable/ride';
 export default {
   props: ['rideId'],
   data() {
-    const raceDetail = race.;
+    const rideDetail = race.;
     const race = ref(null);
 
     return {
