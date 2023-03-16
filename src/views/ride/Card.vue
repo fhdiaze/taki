@@ -4,17 +4,19 @@
     <section class="cardTags">
       <span class="cardTag" v-for="tag in tags" :key="tag">{{ tag }}</span>
     </section>
-    <p class="cardDesc">{{ ride.location.address }}</p>
+    <p class="cardDesc">{{ ride.description }}</p>
   </section>
 
   <section class="cardFooter">
     <section class="cardFooterDate">
-      {{ ride.location.region }}
+      {{ formatDateTime(ride.startAt) }}
     </section>
   </section>
 </template>
 
 <script>
+import moment from 'moment';
+
 export default {
   props: {
     ride: {
@@ -27,6 +29,11 @@ export default {
       tags: ['race', 'hard'],
       link: 'te'
     };
+  },
+  methods: {
+    formatDateTime(instant) {
+      return moment(instant).format('YYYY/MM/DD HH:mm');
+    }
   }
 };
 </script>

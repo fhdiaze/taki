@@ -7,6 +7,23 @@ body {
   background: #efefef;
 }
 
+nav {
+  align-items: center;
+  font-weight: bold;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+nav a {
+  font-weight: bold;
+  color: #2c3e50;
+  padding: 10px;
+}
+
+nav a.router-link-exact-active {
+  color: #42b983;
+}
+
 header {
   background-color: #364552;
   color: white;
@@ -17,6 +34,10 @@ footer {
   background-color: #364552;
   padding: 1rem;
   color: white;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 footer section {
@@ -46,7 +67,6 @@ h1 {
 
 form {
   background: white;
-  margin: 30px auto;
   text-align: left;
   padding: 40px;
   border-radius: 10px;
@@ -73,10 +93,9 @@ input {
 }
 
 main {
-  margin: 0 auto;
+  margin: 0 auto 0 auto;
   max-width: 1200px;
-  padding: 0 20px;
-  margin: 20px auto;
+  padding: 10px auto;
 }
 
 .error {
@@ -91,7 +110,7 @@ main {
   /*flex-direction: row;
   flex-wrap: wrap;*/
   grid-gap: 1.5rem;
-  margin: 0 auto;
+  margin: 10px auto;
   width: 100%;
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
@@ -170,6 +189,10 @@ main {
 .ride:hover {
   transform: scale(1.05);
   border: .1px solid #b217b4;
+}
+
+.navbar {
+  padding: 5px 5px;
 }
 
 #app {
