@@ -3,7 +3,7 @@
  */
 const find = async (country) => {
   try {
-    const response = await fetch('http://localhost:7878/api/race.find');
+    const response = await fetch('http://localhost:7878/api/ride.find');
     const page = await response.json();
     const rides = page.items;
 
@@ -18,7 +18,7 @@ const find = async (country) => {
  */
 const get = async (rideId) => {
   try {
-    const data = await fetch(`http://localhost:7878/api/race.get?raceId=${rideId}`);
+    const data = await fetch(`http://localhost:7878/api/ride.get?rideId=${rideId}`);
 
     if (!data.ok) {
       throw new Error('Error getting a ride');

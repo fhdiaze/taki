@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section v-if="showFilter">
     <form @submit.prevent="find">
       <label for="country">Country: </label>
       <input id="country" type="text" v-model="filter.country">

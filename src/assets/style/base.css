@@ -53,6 +53,7 @@ footer a {
   color: white;
   text-decoration: none;
   padding: 3px;
+  font-weight: bold;
 }
 
 footer a:hover {
@@ -128,7 +129,27 @@ main {
   background-color: #ffffff;
 }
 
-.cardContent {
+.card:hover {
+  transform: scale(1.05);
+  border: .1px solid #b217b4;
+}
+
+.card .header {}
+
+.card .header .title {
+  --tw-text-opacity: 1;
+  color: rgb(17 24 39 / var(--tw-text-opacity));
+  text-align: left;
+  font-size: 1.25rem;
+  margin-top: .5rem;
+  margin-bottom: 0;
+}
+
+.card .header.subtitle {
+  flex-grow: 1;
+}
+
+.card .body {
   display: flex;
   flex-direction: column;
   flex-grow: 2;
@@ -138,21 +159,13 @@ main {
   cursor: pointer;
 }
 
-.cardTitle {
-  --tw-text-opacity: 1;
-  color: rgb(17 24 39 / var(--tw-text-opacity));
-  text-align: left;
-  font-size: 1.25rem;
-  margin-top: .5rem;
-  margin-bottom: 0;
-}
 
-.cardTags {
+.card .tags {
   text-align: left;
   margin: 5px 0;
 }
 
-.cardTag {
+.card .tags .tag {
   font-weight: 500;
   font-size: .8rem;
   --tw-text-opacity: 1;
@@ -165,7 +178,7 @@ main {
   padding-right: .75rem;
 }
 
-.cardDesc {
+.card .desc {
   --tw-text-opacity: 1;
   color: rgb(107 114 128 / var(--tw-text-opacity));
   text-align: left;
@@ -174,7 +187,7 @@ main {
   margin-top: .5rem;
 }
 
-.cardFooter {
+.card .footer {
   display: flex;
   margin-bottom: .8rem;
   font-size: small;
@@ -182,11 +195,11 @@ main {
   width: 85%;
 }
 
-.cardFooterDate {
+.card .footer .website {
   flex-grow: 1;
 }
 
-.ride:hover {
+.card:hover {
   transform: scale(1.05);
   border: .1px solid #b217b4;
 }

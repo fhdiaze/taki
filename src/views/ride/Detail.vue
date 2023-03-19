@@ -12,13 +12,6 @@ export default {
     return {
       race
     };
-  },
-  methods: {
-    getRace(raceId) {
-      const race = {};
-
-      return race;
-    }
   }
 };
 </script>

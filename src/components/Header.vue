@@ -1,5 +1,5 @@
 <template>
   <header id="header">
-    <h1>Rides</h1>
+    <h1>Sports</h1>
   </header>
 </template>
