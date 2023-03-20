@@ -40,10 +40,6 @@ footer {
   right: 0;
 }
 
-footer section {
-  float: right;
-}
-
 footer p {
   margin: 0;
 }
@@ -134,7 +130,15 @@ main {
   border: .1px solid #b217b4;
 }
 
-.card .header {}
+.card .header {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 2;
+  justify-content: space-between;
+  width: 85%;
+  margin-top: 1rem;
+  cursor: pointer;
+}
 
 .card .header .title {
   --tw-text-opacity: 1;
@@ -159,7 +163,6 @@ main {
   cursor: pointer;
 }
 
-
 .card .tags {
   text-align: left;
   margin: 5px 0;
@@ -178,7 +181,7 @@ main {
   padding-right: .75rem;
 }
 
-.card .desc {
+.card .body .desc {
   --tw-text-opacity: 1;
   color: rgb(107 114 128 / var(--tw-text-opacity));
   text-align: left;
@@ -189,14 +192,19 @@ main {
 
 .card .footer {
   display: flex;
-  margin-bottom: .8rem;
   font-size: small;
   justify-content: space-between;
   width: 85%;
+  margin-bottom: .8rem;
+}
+
+.card .footer p {
+  margin: 0;
 }
 
 .card .footer .website {
-  flex-grow: 1;
+  flex-grow: 2;
+  margin: 0;
 }
 
 .card:hover {

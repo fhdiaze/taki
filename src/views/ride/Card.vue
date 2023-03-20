@@ -7,19 +7,19 @@
     </section>
   </section>
   <section class="body">
-    <p class="cardDesc">{{ ride.description }}</p>
+    <p class="desc">{{ ride.description }}</p>
   </section>
 
   <section class="footer">
-    <section>
+    <p>
       {{ ride.route.distance }} Km
-    </section>
-    <section class="website">
+    </p>
+    <a class="website" :href="ride.website" target="_blank">
       {{ ride.website }}
-    </section>
-    <section>
+    </a>
+    <p>
       {{ ride.route.elevation }} m
-    </section>
+    </p>
   </section>
 </template>
 
