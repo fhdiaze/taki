@@ -3,7 +3,14 @@
  */
 const find = async (country) => {
   try {
-    const response = await fetch('http://localhost:7878/api/ride.find');
+    const options = {
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+    const response = await fetch('http://localhost:7878/api/ride.find', options);
     const page = await response.json();
     const rides = page.items;
 
