@@ -34,10 +34,7 @@ footer {
   background-color: #364552;
   padding: 1rem;
   color: white;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  width: 100%;
 }
 
 footer p {

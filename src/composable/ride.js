@@ -1,14 +1,18 @@
 /**
  * Gets rides that match a filter
  */
-const find = async (country) => {
+const find = async (filter) => {
   try {
+    const body = {
+      size: 1
+    };
     const options = {
       method: 'POST',
       mode: 'cors',
       headers: {
         'Content-Type': 'application/json',
       },
+      body: JSON.stringify(body)
     };
     const response = await fetch('http://localhost:7878/api/ride.find', options);
     const page = await response.json();

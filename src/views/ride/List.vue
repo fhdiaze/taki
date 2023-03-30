@@ -29,6 +29,7 @@ export default {
         country: null,
         type: null,
       },
+      showFilter: true,
       rides: [],
     };
   },
