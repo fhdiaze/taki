@@ -1,3 +1,5 @@
+import { config } from './config';
+
 /**
  * Gets rides that match a filter
  */
@@ -14,7 +16,7 @@ const find = async (filter) => {
       },
       body: JSON.stringify(body)
     };
-    const response = await fetch('http://localhost:7878/api/ride.find', options);
+    const response = await fetch(`${config.wero.url}/ride.find`, options);
     const page = await response.json();
     const rides = page.items;
 
@@ -29,7 +31,7 @@ const find = async (filter) => {
  */
 const get = async (rideId) => {
   try {
-    const data = await fetch(`http://localhost:7878/api/ride.get?rideId=${rideId}`);
+    const data = await fetch(`${config.wero.url}/ride.get?rideId=${rideId}`);
 
     if (!data.ok) {
       throw new Error('Error getting a ride');
