@@ -4,7 +4,7 @@
 const find = async (filter) => {
   try {
     const body = {
-      size: 1
+      size: 10
     };
     const options = {
       method: 'POST',
