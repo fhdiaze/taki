@@ -1,6 +1,6 @@
 const config = {
   wero: {
-    url: process.env.APPSETTING_WERO__URL || 'http://localhost:7878/apis'
+    url: process.env.APPSETTING_WERO_URL || 'http://localhost:7878/apis'
   }
 };
 
