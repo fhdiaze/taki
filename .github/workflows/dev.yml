@@ -29,7 +29,7 @@ jobs:
           npm install
           npm run build --if-present
         env:
-          VUE_APP_WERO__URL: ${{ env.WERO__URL }}
+          VUE_APP_WERO__URL: ${{ vars.WERO__URL }}
 
       - name: deploy
         uses: azure/webapps-deploy@v2
