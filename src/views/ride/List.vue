@@ -1,13 +1,17 @@
 <template>
-  <section v-if="showFilter">
-    <form @submit.prevent="find">
-      <label for="country">Country: </label>
-      <input id="country" type="text" v-model="filter.country">
-      <label for="type">Type: </label>
-      <input id="type" type="text" v-model="filter.type">
-      <button>Find</button>
-    </form>
+  <section class="filters">
+    <button v-on:click="showFilter = !showFilter">Filter</button>
+    <section v-show="showFilter">
+      <form @submit.prevent="find">
+        <label for="country">Country: </label>
+        <input id="country" type="text" v-model="filter.country">
+        <label for="format">Format: </label>
+        <input id="format" type="text" v-model="filter.format">
+        <button>Apply</button>
+      </form>
+    </section>
   </section>
+
   <section class="cards">
     <section class="card" v-for="ride in rides" :key="ride.id">
       <Card :ride="ride"></Card>
@@ -27,7 +31,7 @@ export default {
     return {
       filter: {
         country: null,
-        type: null,
+        format: null,
       },
       showFilter: true,
       rides: [],

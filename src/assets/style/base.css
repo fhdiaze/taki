@@ -216,6 +216,10 @@ main {
   padding: 5px 5px;
 }
 
+.filter {
+  text-align: left;
+}
+
 #app {
   text-align: center;
 }
