@@ -1,13 +1,10 @@
 <template>
   <section class="filters">
-    <button v-on:click="showFilter = !showFilter">Filter</button>
-    <section v-show="showFilter">
+    <section>
       <form @submit.prevent="find">
-        <label for="country">Country: </label>
-        <input id="country" type="text" v-model="filter.country">
-        <label for="format">Format: </label>
-        <input id="format" type="text" v-model="filter.format">
-        <button>Apply</button>
+        <label for="search">Search: </label>
+        <input id="search" type="text" v-model="filter.search">
+        <button>Search</button>
       </form>
     </section>
   </section>
@@ -30,20 +27,25 @@ export default {
   data() {
     return {
       filter: {
-        country: null,
-        format: null,
+        search: null
       },
-      showFilter: true,
       rides: [],
     };
   },
   methods: {
     async find() {
-      this.rides = await ride.find(this.country);
+      const filter = {
+        name: this.filter.search,
+        description: this.filter.search,
+        city: this.filter.search,
+        country: this.filter.search
+      };
+
+      this.rides = await ride.find(filter);
     },
   },
   async mounted() {
-    this.rides = await ride.find(this.country);
+    this.rides = await ride.find({});
   }
 };
 </script>

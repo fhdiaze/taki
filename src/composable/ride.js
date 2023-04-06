@@ -2,11 +2,17 @@ import { config } from './config';
 
 /**
  * Gets rides that match a filter
+ * @param {Object} filter The filters
+ * @param {string} filter.name The name of the ride
+ * @param {string} filter.description The description of the ride
+ * @param {string} filter.city The city of the ride
+ * @param {string} filter.country The country of the ride
  */
 const find = async (filter) => {
   try {
     const body = {
-      size: 10
+      size: 10,
+      query: filter
     };
     const options = {
       method: 'POST',
