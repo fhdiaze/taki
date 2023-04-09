@@ -1,12 +1,9 @@
 <template>
-  <section class="filters">
-    <section>
-      <form @submit.prevent="find">
-        <label for="search">Search: </label>
-        <input id="search" type="text" v-model="filter.search">
-        <button>Search</button>
+  <section>
+      <form class="search" @submit.prevent="find">
+        <input id="search" type="search" placeholder="Search" v-model="filter.search">
+        <button value="search">&nbsp;</button>
       </form>
-    </section>
   </section>
 
   <section class="cards">
