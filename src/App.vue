@@ -20,3 +20,15 @@ export default {
   },
 };
 </script>
+
+<style>
+main {
+  margin: 0 auto 0 auto;
+  max-width: 1200px;
+  padding: 10px auto;
+}
+
+main section {
+  padding: 10px;
+}
+</style>
