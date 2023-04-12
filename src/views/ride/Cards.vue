@@ -131,8 +131,6 @@ export default {
   width: 90%;
   height: 30%;
   cursor: pointer;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .card .body .desc {
@@ -142,6 +140,7 @@ export default {
   font-size: 1rem;
   margin-bottom: 0.5rem;
   margin-top: .5rem;
+  overflow: hidden;
   text-overflow: ellipsis;
 }
 
@@ -151,6 +150,7 @@ export default {
   font-size: small;
   justify-content: space-between;
   width: 85%;
+  height: 10%;
   margin-bottom: .8rem;
   text-align: center;
 }
@@ -162,6 +162,9 @@ export default {
 .card .footer .website {
   flex-grow: 2;
   margin: 0;
+  max-width: 60%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .card:hover {
