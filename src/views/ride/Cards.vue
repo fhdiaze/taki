@@ -54,19 +54,15 @@ export default {
 
 <style scoped>
 .cards {
-  display: grid;
-  flex-direction: column;
-  flex-wrap: nowrap;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
   grid-gap: 1.5rem;
-  width: 100%;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .card {
-  flex: 1;
-  display: flex;
-  display: -webkit-flex;
-  flex-direction: column;
+  width: 300px;
   align-items: center;
   border-radius: 0.5rem;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;

@@ -23,7 +23,7 @@ export default {
 
 <style>
 main {
-  margin: 0 auto 0 auto;
+  margin: 0 auto;
   max-width: 1200px;
   padding: 10px auto;
 }

@@ -11,6 +11,7 @@ footer {
   background-color: #364552;
   padding: 1rem;
   color: white;
+  margin-top: auto;
 }
 
 footer p {
