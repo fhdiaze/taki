@@ -6,9 +6,6 @@ body {
   margin: 0;
   padding: 0;
   background: #efefef;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
 }
 
 .error {
@@ -16,8 +13,4 @@ body {
   margin-top: 10px;
   font-size: 0.8em;
   font-weight: bold;
-}
-
-#app {
-  text-align: center;
 }

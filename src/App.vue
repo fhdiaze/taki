@@ -24,8 +24,10 @@ export default {
 <style>
 main {
   margin: 0 auto;
-  max-width: 1200px;
-  padding: 10px auto;
+  max-width: 95%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 main section {

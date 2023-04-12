@@ -12,6 +12,7 @@ footer {
   padding: 1rem;
   color: white;
   margin-top: auto;
+  text-align: center;
 }
 
 footer p {
