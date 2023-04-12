@@ -63,6 +63,7 @@ export default {
 
 .card {
   width: 300px;
+  height: 200px;
   align-items: center;
   border-radius: 0.5rem;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
@@ -81,8 +82,8 @@ export default {
   flex-direction: column;
   flex-grow: 2;
   justify-content: space-between;
-  width: 85%;
-  margin-top: 1rem;
+  width: 90%;
+  margin: 0 auto;
   cursor: pointer;
 }
 
@@ -106,6 +107,7 @@ export default {
 .card .header .tags {
   text-align: left;
   margin: 5px 0;
+  padding: 0;
 }
 
 .card .header .tags .tag {
@@ -126,7 +128,7 @@ export default {
   flex-direction: column;
   flex-grow: 2;
   justify-content: space-between;
-  width: 85%;
+  width: 90%;
   cursor: pointer;
 }
 
@@ -140,11 +142,13 @@ export default {
 }
 
 .card .footer {
+  margin: 0 auto;
   display: flex;
   font-size: small;
   justify-content: space-between;
   width: 85%;
   margin-bottom: .8rem;
+  text-align: center;
 }
 
 .card .footer p {
