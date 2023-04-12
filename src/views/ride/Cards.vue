@@ -129,7 +129,10 @@ export default {
   flex-grow: 2;
   justify-content: space-between;
   width: 90%;
+  height: 30%;
   cursor: pointer;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .card .body .desc {
@@ -139,6 +142,7 @@ export default {
   font-size: 1rem;
   margin-bottom: 0.5rem;
   margin-top: .5rem;
+  text-overflow: ellipsis;
 }
 
 .card .footer {
