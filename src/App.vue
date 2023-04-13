@@ -1,36 +1,36 @@
 <template>
-  <h1>{{ title }}</h1>
-  <Find />
+  <Header />
+  <main>
+    <router-view />
+  </main>
+  <Footer />
 </template>
 
 <script>
-import Find from './components/race/Find.vue';
+import Navbar from './components/Navbar.vue';
+import Header from './components/Header.vue';
+import Footer from './components/Footer.vue';
 
 export default {
   name: "App",
   components: {
-    Find,
+    Navbar,
+    Header,
+    Footer,
   },
-  data() {
-    return {
-      title: 'My First Vue App'
-    }
-  },
-  methods: {
-    handleClick() {
-      console.log(this.$refs.name);
-    }
-  }
 };
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+main {
+  margin: 0 auto;
+  max-width: 95%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main section {
+  padding: 10px;
 }
 </style>
