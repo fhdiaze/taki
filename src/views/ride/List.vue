@@ -1,14 +1,14 @@
 <template>
   <section>
-    <form class="search" @submit.prevent="find">
-      <input id="search" type="search" placeholder="Search" v-model="filter.search">
+    <form class="search" @submit.prevent="search">
+      <input id="search" type="search" placeholder="Search" v-model.trim="filter.search">
       <button class="search" value="search">&nbsp;</button>
     </form>
   </section>
 
   <Cards :rides="rides"></Cards>
 
-  <a class="more" @click="find()">Load More</a>
+  <a class="more" @click="more" href="#">More</a>
 </template>
 
 <script>
@@ -28,23 +28,30 @@ export default {
     };
   },
   methods: {
-    async find() {
-      const cursor = {
+    async search() {
+      this.rides = [];
+      this.cursor = {
         query: {
           name: this.filter.search,
           description: this.filter.search,
           city: this.filter.search,
           country: this.filter.search
         },
-        size: 10,
-        continuationToken: this.rides.slice(-1)?.id
+        size: 3,
+        continuationToken: null
       };
-      const rides = await ride.find(cursor);
-      this.rides.push(...rides);
+      this.rides = await ride.find(this.cursor);
     },
+    async more() {
+      this.filter.search = this.cursor.query.name;
+      this.cursor.continuationToken = this.rides.at(-1)?.id
+      const rides = await ride.find(this.cursor);
+
+      this.rides.push(...rides);
+    }
   },
   async mounted() {
-    await this.find();
+    await this.search();
   }
 };
 </script>
