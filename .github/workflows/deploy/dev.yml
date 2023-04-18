@@ -3,11 +3,14 @@ concurrency: dev
 run-name: ${{ github.actor }} run this workflow
 on:
   push:
-    branches: ["dev"]
+    branches:
+      - dev
+
 env:
   APP_NAME: "devtaki"
   PACKAGE_PATH: "dist"
   NODE_VERSION: "18"
+
 jobs:
   buildAndDeploy:
     runs-on: ubuntu-latest
@@ -35,6 +38,6 @@ jobs:
         uses: azure/webapps-deploy@v2
         with:
           app-name: ${{ env.APP_NAME }}
-          slot-name: "production"
+          slot-name: production
           publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
           package: ${{ env.PACKAGE_PATH }}

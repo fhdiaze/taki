@@ -1,0 +1,43 @@
+name: prod
+concurrency: prod
+run-name: ${{ github.actor }} run this workflow
+on:
+  push:
+    branches:
+      - main
+
+env:
+  APP_NAME: "taki"
+  PACKAGE_PATH: "dist"
+  NODE_VERSION: "18"
+
+jobs:
+  buildAndDeploy:
+    runs-on: ubuntu-latest
+    environment: prod
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: setup
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: build
+        run: |
+          npm install
+          npm run build --if-present
+        env:
+          VUE_APP_WERO__URL: ${{ vars.WERO__URL }}
+
+      - name: deploy
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: ${{ env.APP_NAME }}
+          slot-name: production
+          publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
+          package: ${{ env.PACKAGE_PATH }}
