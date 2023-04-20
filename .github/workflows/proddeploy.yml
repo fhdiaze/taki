@@ -7,7 +7,7 @@ on:
       - main
 
 env:
-  APP_NAME: "taki"
+  APP_NAME: "prodtaki"
   PACKAGE_PATH: "dist"
   NODE_VERSION: "18"
 
