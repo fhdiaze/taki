@@ -27,7 +27,7 @@ const cursor = {
     city: filter.search,
     country: filter.search
   },
-  size: 3,
+  size: 10,
   continuationToken: null
 };
 
