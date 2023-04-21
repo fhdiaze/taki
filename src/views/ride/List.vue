@@ -11,49 +11,45 @@
   <a class="more" @click="more" href="#">More</a>
 </template>
 
-<script>
+<script setup>
 import * as ride from '../../composable/ride';
 import Cards from './Cards.vue';
+import { onBeforeMount, reactive, ref } from 'vue';
 
-export default {
-  components: {
-    Cards,
+let filter = reactive({
+  search: null,
+});
+let rides = reactive([]);
+const cursor = {
+  query: {
+    name: filter.search,
+    description: filter.search,
+    city: filter.search,
+    country: filter.search
   },
-  data() {
-    return {
-      filter: {
-        search: null,
-      },
-      rides: [],
-    };
-  },
-  methods: {
-    async search() {
-      this.rides = [];
-      this.cursor = {
-        query: {
-          name: this.filter.search,
-          description: this.filter.search,
-          city: this.filter.search,
-          country: this.filter.search
-        },
-        size: 3,
-        continuationToken: null
-      };
-      this.rides = await ride.find(this.cursor);
-    },
-    async more() {
-      this.filter.search = this.cursor.query.name;
-      this.cursor.continuationToken = this.rides.at(-1)?.id
-      const rides = await ride.find(this.cursor);
-
-      this.rides.push(...rides);
-    }
-  },
-  async mounted() {
-    await this.search();
-  }
+  size: 3,
+  continuationToken: null
 };
+
+const search = async () => {
+  rides.splice(0, rides.length);
+  cursor.query.name = filter.search;
+  cursor.query.description = filter.search;
+  cursor.query.city = filter.search;
+  cursor.query.country = filter.search;
+  const localRides = await ride.find(cursor);
+  rides.push(...localRides);
+};
+
+const more = async () => {
+  filter.search = cursor.query.name;
+  cursor.continuationToken = rides.at(-1)?.id;
+  const moreRides = await ride.find(cursor);
+
+  rides.push(...moreRides);
+};
+
+onBeforeMount(async () => await search());
 </script>
 
 <style>
