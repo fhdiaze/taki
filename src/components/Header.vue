@@ -1,6 +1,6 @@
 <template>
   <header id="header">
-    <h1>Cycling</h1>
+    <h1>Cycling Races</h1>
   </header>
 </template>
 
