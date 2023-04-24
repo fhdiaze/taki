@@ -6,12 +6,7 @@
   </section>
 </template>
 
-<script>
-export default {
-  name: 'Navbar',
-  setup() {
-  }
-};
+<script setup>
 </script>
 
 <style>
