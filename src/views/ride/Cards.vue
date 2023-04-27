@@ -1,6 +1,6 @@
 <template>
   <section class="cards">
-    <section class="card" v-for="ride in rides" :key="ride.id">
+    <article class="card" v-for="ride in rides" :key="ride.id">
       <section class="header">
         <h2 class="title">{{ ride.name }}</h2>
         <h3 class="subtitle">{{ formatDateTime(ride.startAt) }}</h3>
@@ -8,22 +8,23 @@
           <span class="tag" v-for="tag in assemblyTags(ride)" :key="tag">{{ tag }}</span>
         </section>
       </section>
+
       <section class="body">
         <p class="desc">{{ ride.description }}</p>
       </section>
 
       <section class="footer">
-        <p>
+        <p class="distance">
           {{ ride.route.distance }} Km
         </p>
         <a class="website" :href="ride.website" target="_blank">
           {{ ride.website }}
         </a>
-        <p>
+        <p class="elevation">
           {{ ride.route.elevation }} m
         </p>
       </section>
-    </section>
+    </article>
   </section>
 </template>
 
@@ -55,21 +56,36 @@ export default {
 <style scoped>
 .cards {
   display: flex;
-  flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
+  flex-direction: row;
   grid-gap: 1.5rem;
+  padding: 10px;
 }
 
 .card {
-  width: 300px;
-  height: 200px;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 40% 50% 10%;
+  grid-template-areas:
+    "header"
+    "body"
+    "footer";
+  width: 320px;
+  height: 250px;
   border-radius: 0.5rem;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   transition: all 0.2s ease-in-out;
-  overflow: hidden;
   background-color: #ffffff;
+  padding: 10px;
+}
+
+.card * {
+  border: 1px solid;
+  min-width: 0px;
+  text-overflow: clip;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .card:hover {
@@ -78,25 +94,29 @@ export default {
 }
 
 .card .header {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 2;
-  justify-content: space-between;
-  width: 90%;
-  margin: 0 auto;
+  display: grid;
+  grid-area: "header";
+  grid-template-columns: 100%;
+  grid-template-rows: 40% 30% 30%;
+  grid-template-areas:
+    "title"
+    "subtitle"
+    "tags";
   cursor: pointer;
+  text-align: left;
 }
 
 .card .header .title {
+  grid-area: "title";
   --tw-text-opacity: 1;
   color: rgb(17 24 39 / var(--tw-text-opacity));
   text-align: left;
   font-size: 1.25rem;
-  margin-top: .5rem;
-  margin-bottom: 0;
+  margin: 0 auto;
 }
 
 .card .header .subtitle {
+  grid-area: subtitle;
   --tw-text-opacity: 1;
   color: rgb(107 114 128 / var(--tw-text-opacity));
   text-align: left;
@@ -105,9 +125,9 @@ export default {
 }
 
 .card .header .tags {
+  grid-area: tags;
   text-align: left;
-  margin: 5px 0;
-  padding: 0;
+  margin: auto 0;
 }
 
 .card .header .tags .tag {
@@ -124,12 +144,10 @@ export default {
 }
 
 .card .body {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 2;
-  justify-content: space-between;
-  width: 90%;
-  height: 30%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  grid-area: body;
   cursor: pointer;
 }
 
@@ -140,31 +158,34 @@ export default {
   font-size: 1rem;
   margin-bottom: 0.5rem;
   margin-top: .5rem;
-  overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .card .footer {
-  margin: 0 auto;
-  display: flex;
+  display: grid;
+  grid-area: footer;
+  grid-template-columns: 25% 50% 25%;
+  grid-template-rows: 100%;
+  grid-template-areas: "distance website elevation";
   font-size: small;
-  justify-content: space-between;
-  width: 85%;
-  height: 10%;
-  margin-bottom: .8rem;
   text-align: center;
 }
 
-.card .footer p {
+.card .footer .distance {
   margin: 0;
+  grid-area: distance;
 }
 
 .card .footer .website {
-  flex-grow: 2;
+  grid-area: website;
   margin: 0;
-  max-width: 60%;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.card .footer .elevation {
+  margin: 0;
+  grid-area: elevation;
 }
 
 .card:hover {
