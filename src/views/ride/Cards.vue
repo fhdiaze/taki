@@ -97,7 +97,7 @@ export default {
   display: grid;
   grid-area: "header";
   grid-template-columns: 100%;
-  grid-template-rows: 40% 30% 30%;
+  grid-template-rows: 50% 20% 30%;
   grid-template-areas:
     "title"
     "subtitle"
@@ -174,6 +174,7 @@ export default {
 .card .footer .distance {
   margin: 0;
   grid-area: distance;
+  text-align: left;
 }
 
 .card .footer .website {
@@ -186,6 +187,7 @@ export default {
 .card .footer .elevation {
   margin: 0;
   grid-area: elevation;
+  text-align: right;
 }
 
 .card:hover {
