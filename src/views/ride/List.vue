@@ -1,14 +1,16 @@
 <template>
-  <section>
-    <form class="search" @submit.prevent="search">
-      <input id="search" type="search" placeholder="Search" v-model.trim="filter.search">
-      <button class="search" value="search">&nbsp;</button>
-    </form>
+  <section class="find">
+    <section class="criteria">
+      <form class="search" @submit.prevent="search">
+        <input id="search" type="search" placeholder="Search" v-model.trim="filter.search">
+        <button class="search" value="search">&nbsp;</button>
+      </form>
+    </section>
+
+    <Cards :rides="rides"></Cards>
+
+    <a class="more" @click="more" href="#">More</a>
   </section>
-
-  <Cards :rides="rides"></Cards>
-
-  <a class="more" @click="more" href="#">More</a>
 </template>
 
 <script setup>
@@ -52,7 +54,16 @@ const more = async () => {
 onBeforeMount(async () => await search());
 </script>
 
-<style>
+<style scoped>
+.find {
+  display: flex;
+  flex-direction: column;
+}
+
+.criteria {
+  padding: 5px;
+}
+
 form.search {
   background-color: #efefef;
   padding: 5px;
