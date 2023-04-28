@@ -81,11 +81,16 @@ export default {
 }
 
 .card * {
-  border: 1px solid;
   min-width: 0px;
-  text-overflow: clip;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.card *:hover {
+    text-overflow: clip;
+    white-space: normal;
+    word-break: break-all;
+    overflow: visible;
 }
 
 .card:hover {
@@ -113,6 +118,7 @@ export default {
   text-align: left;
   font-size: 1.25rem;
   margin: 0 auto;
+  white-space: pre-wrap;
 }
 
 .card .header .subtitle {
@@ -182,6 +188,7 @@ export default {
   margin: 0;
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .card .footer .elevation {
