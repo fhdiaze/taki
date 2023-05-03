@@ -77,7 +77,7 @@ export default {
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   transition: all 0.2s ease-in-out;
   background-color: #ffffff;
-  padding: 10px;
+  padding: 15px;
 }
 
 .card * {
@@ -87,10 +87,10 @@ export default {
 }
 
 .card *:hover {
-    text-overflow: clip;
-    white-space: normal;
-    word-break: break-all;
-    overflow: visible;
+  text-overflow: clip;
+  white-space: normal;
+  word-break: break-all;
+  overflow: visible;
 }
 
 .card:hover {
@@ -175,6 +175,7 @@ export default {
   grid-template-areas: "distance website elevation";
   font-size: small;
   text-align: center;
+  align-items: self-end;
 }
 
 .card .footer .distance {
