@@ -117,7 +117,7 @@ export default {
   color: rgb(17 24 39 / var(--tw-text-opacity));
   text-align: left;
   font-size: 1.25rem;
-  margin: 0 auto;
+  margin: 0;
   white-space: pre-wrap;
 }
 
