@@ -29,8 +29,8 @@ const cursor = {
     city: filter.search,
     country: filter.search
   },
-  size: 10,
-  continuationToken: null
+  page: 0,
+  size: 2,
 };
 
 const search = async () => {
@@ -45,10 +45,15 @@ const search = async () => {
 
 const more = async () => {
   filter.search = cursor.query.name;
-  cursor.continuationToken = rides.at(-1)?.id;
+  cursor.page++;
   const moreRides = await ride.find(cursor);
 
-  rides.push(...moreRides);
+  if (moreRides.length == 0) {
+    cursor.page--;
+  } else {
+    rides.push(...moreRides);
+  }
+
 };
 
 onBeforeMount(async () => await search());
