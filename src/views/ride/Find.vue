@@ -16,7 +16,7 @@
 <script setup>
 import * as ride from '../../composable/ride';
 import Cards from './Cards.vue';
-import { onBeforeMount, reactive, ref } from 'vue';
+import { onBeforeMount, reactive } from 'vue';
 
 let filter = reactive({
   search: null,
@@ -30,7 +30,7 @@ const cursor = {
     country: filter.search
   },
   page: 0,
-  size: 2,
+  size: 10,
 };
 
 const search = async () => {
