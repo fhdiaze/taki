@@ -1,7 +1,7 @@
 <template>
   <section class="navbar">
     <nav>
-      <router-link :to="{ name: 'RideList' }">Rides</router-link>
+      <router-link :to="{ name: 'RideFind' }">Rides</router-link>
     </nav>
   </section>
 </template>

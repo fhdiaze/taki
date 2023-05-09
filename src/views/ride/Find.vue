@@ -16,7 +16,7 @@
 <script setup>
 import * as ride from '../../composable/ride';
 import Cards from './Cards.vue';
-import { onBeforeMount, reactive, ref } from 'vue';
+import { onBeforeMount, reactive } from 'vue';
 
 let filter = reactive({
   search: null,
@@ -29,8 +29,8 @@ const cursor = {
     city: filter.search,
     country: filter.search
   },
+  page: 0,
   size: 10,
-  continuationToken: null
 };
 
 const search = async () => {
@@ -45,10 +45,15 @@ const search = async () => {
 
 const more = async () => {
   filter.search = cursor.query.name;
-  cursor.continuationToken = rides.at(-1)?.id;
+  cursor.page++;
   const moreRides = await ride.find(cursor);
 
-  rides.push(...moreRides);
+  if (moreRides.length == 0) {
+    cursor.page--;
+  } else {
+    rides.push(...moreRides);
+  }
+
 };
 
 onBeforeMount(async () => await search());

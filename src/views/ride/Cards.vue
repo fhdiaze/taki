@@ -87,10 +87,10 @@ export default {
 }
 
 .card *:hover {
-  text-overflow: clip;
-  white-space: normal;
-  word-break: break-all;
-  overflow: visible;
+    text-overflow: clip;
+    white-space: normal;
+    word-break: break-all;
+    overflow: hidden;
 }
 
 .card:hover {
@@ -155,6 +155,9 @@ export default {
   grid-template-rows: 1fr;
   grid-area: body;
   cursor: pointer;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  overflow-wrap: break-word;
 }
 
 .card .body .desc {
@@ -164,7 +167,8 @@ export default {
   font-size: 1rem;
   margin-bottom: 0.5rem;
   margin-top: .5rem;
-  text-overflow: ellipsis;
+  text-align: justify;
+  text-justify: inter-word;
 }
 
 .card .footer {

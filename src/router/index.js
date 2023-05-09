@@ -1,18 +1,18 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import NotFound from '../components/NotFound.vue';
 import Home from '../views/Home.vue';
-import List from '../views/ride/List.vue';
+import Find from '../views/ride/Find.vue';
 
 const routes = [
   {
     path: '/',
     name: 'Home',
-    component: List
+    component: Find
   },
   {
-    path: '/ride/list',
-    name: 'RideList',
-    component: List,
+    path: '/ride/find',
+    name: 'RideFind',
+    component: Find,
   },
   {
     path: '/:catchAll(.*)',
