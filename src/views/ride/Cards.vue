@@ -83,14 +83,17 @@ export default {
 .card * {
   min-width: 0px;
   overflow: hidden;
-  text-overflow: ellipsis;
+  overflow-wrap: normal;
+  white-space: break-spaces;
+  display: inline-block;
 }
 
 .card *:hover {
-    text-overflow: clip;
-    white-space: normal;
-    word-break: break-all;
-    overflow: hidden;
+  overflow: hidden;
+  text-overflow: clip;
+  overflow-wrap: normal;
+  white-space: break-spaces;
+  display: inline-block;
 }
 
 .card:hover {
@@ -118,7 +121,12 @@ export default {
   text-align: left;
   font-size: 1.25rem;
   margin: 0;
-  white-space: pre-wrap;
+   -webkit-box-orient: vertical;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
 }
 
 .card .header .subtitle {
@@ -155,9 +163,6 @@ export default {
   grid-template-rows: 1fr;
   grid-area: body;
   cursor: pointer;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  overflow-wrap: break-word;
 }
 
 .card .body .desc {
@@ -169,6 +174,7 @@ export default {
   margin-top: .5rem;
   text-align: justify;
   text-justify: inter-word;
+  vertical-align: middle;
 }
 
 .card .footer {
@@ -191,8 +197,6 @@ export default {
 .card .footer .website {
   grid-area: website;
   margin: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
   white-space: nowrap;
 }
 
@@ -200,10 +204,5 @@ export default {
   margin: 0;
   grid-area: elevation;
   text-align: right;
-}
-
-.card:hover {
-  transform: scale(1.05);
-  border: .1px solid #b217b4;
 }
 </style>
