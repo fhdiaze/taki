@@ -15,7 +15,7 @@
 
       <section class="footer">
         <p class="distance">
-          {{ ride.route.distance }} Km
+          {{ ride.route.distance }} km
         </p>
         <a class="website" :href="ride.website" target="_blank">
           {{ ride.website }}
@@ -174,7 +174,6 @@ export default {
   margin-top: .5rem;
   text-align: justify;
   text-justify: inter-word;
-  vertical-align: middle;
 }
 
 .card .footer {
@@ -198,6 +197,7 @@ export default {
   grid-area: website;
   margin: 0;
   white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .card .footer .elevation {
