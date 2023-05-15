@@ -1,4 +1,4 @@
-name: dev
+name: deployDev
 concurrency: dev
 run-name: ${{ github.actor }} run this workflow
 on:
