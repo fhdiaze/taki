@@ -18,7 +18,7 @@
           {{ ride.route.distance }} km
         </p>
         <a class="website" :href="ride.website" target="_blank">
-          {{ ride.website }}
+          Details
         </a>
         <p class="elevation">
           {{ ride.route.elevation }} m
