@@ -35,7 +35,7 @@ export default {
   props: {
     rides: {
       type: Array,
-      required: true,f
+      required: true,
     }
   },
   methods: {
