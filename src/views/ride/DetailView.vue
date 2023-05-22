@@ -12,4 +12,6 @@ const props = defineProps({
 const race = ref(null);
 </script>
 
-<template></template>
+<template>
+  <h3>In progress</h3>
+</template>
