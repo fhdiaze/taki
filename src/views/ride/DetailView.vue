@@ -1,17 +1,19 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import * as ride from '../../composable/ride';
+import { onMounted, ref } from 'vue';
+import { get, type Ride } from '../../composable/ride';
 
 const props = defineProps({
   rideId: {
-    type: Number,
+    type: String,
     required: true,
   }
 });
 
-const race = ref(null);
+let ride: Ride = ref(null);
+
+onMounted(async () => ride = await get(props.rideId))
 </script>
 
 <template>
-  <h3>In progress</h3>
+  <h3>In progress {{ ride.name }}</h3>
 </template>
