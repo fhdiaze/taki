@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import * as ride from '../../composable/ride';
-import Cards from './Cards.vue';
+import Cards from './CardsView.vue';
 import { onBeforeMount, reactive } from 'vue';
 import { type Ride } from '../../composable/ride';
 

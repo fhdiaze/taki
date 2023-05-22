@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import Find from '../views/ride/Find.vue';
+import Find from '../views/ride/FindView.vue';
 import NotFound from '../components/NotFound.vue';
 
 const router = createRouter({
