@@ -1,20 +1,6 @@
 <script setup lang="ts">
 import moment from 'moment';
-interface Route {
-  elevation: Number
-  distance: Number
-}
-
-interface Ride {
-  id: string
-  name: string
-  discipline: string
-  category: string
-  startAt: moment.Moment
-  description: string
-  website: string
-  route: Route
-}
+import { type Ride } from '@/composable/ride';
 
 const props = defineProps({
   rides: {

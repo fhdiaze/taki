@@ -1,5 +1,21 @@
 import { config } from './config';
 
+interface Route {
+  elevation: Number
+  distance: Number
+}
+
+interface Ride {
+  id: string
+  name: string
+  discipline: string
+  category: string
+  startAt: moment.Moment
+  description: string
+  website: string
+  route: Route
+}
+
 /**
  * Gets rides that match a filter
  * @param {Object} cursor The query cursor
@@ -48,4 +64,5 @@ const get = async (rideId: string) => {
   }
 };
 
+export type { Ride, Route };
 export { find, get };

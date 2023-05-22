@@ -2,11 +2,12 @@
 import * as ride from '../../composable/ride';
 import Cards from './Cards.vue';
 import { onBeforeMount, reactive } from 'vue';
+import { type Ride } from '../../composable/ride';
 
 let filter = reactive({
   search: null,
 });
-let rides: Object[] = reactive([]);
+let rides: Ride[] = reactive([]);
 const cursor = {
   query: {
     name: filter.search,
