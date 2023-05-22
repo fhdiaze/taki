@@ -1,17 +1,15 @@
-<template></template>
-
-<script>
+<script setup lang="ts">
+import { ref } from 'vue';
 import * as ride from '../../composable/ride';
 
-export default {
-  props: ['rideId'],
-  data() {
-    const rideDetail = race.;
-    const race = ref(null);
-
-    return {
-      race
-    };
+const props = defineProps({
+  rideId: {
+    type: Number,
+    required: true,
   }
-};
+});
+
+const race = ref(null);
 </script>
+
+<template></template>
