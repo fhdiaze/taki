@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import moment from 'moment';
 
-const rides = defineProps({
+const props = defineProps({
   rides: {
     type: Array,
     required: true,
@@ -23,7 +23,7 @@ const assemblyTags = (ride: Object) => {
 
 <template>
   <section class="cards">
-    <article class="card" v-for="ride in rides" :key="ride.id">
+    <article class="card" v-for="ride in props.rides" :key="ride.id">
       <section class="header">
         <h2 class="title">{{ ride.name }}</h2>
         <h3 class="subtitle">{{ formatDateTime(ride.startAt) }}</h3>
