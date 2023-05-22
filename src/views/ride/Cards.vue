@@ -1,9 +1,24 @@
 <script setup lang="ts">
 import moment from 'moment';
+interface Route {
+  elevation: Number
+  distance: Number
+}
+
+interface Ride {
+  id: string
+  name: string
+  discipline: string
+  category: string
+  startAt: moment.Moment
+  description: string
+  website: string
+  route: Route
+}
 
 const props = defineProps({
   rides: {
-    type: Array,
+    type: Array<Ride>,
     required: true,
   }
 });
@@ -12,7 +27,7 @@ const formatDateTime = (instant: moment.Moment) => {
   return moment(instant).format('YYYY/MM/DD HH:mm');
 };
 
-const assemblyTags = (ride: Object) => {
+const assemblyTags = (ride: Ride) => {
   const tags = [];
   tags.push(ride.discipline);
   tags.push(ride.category);
