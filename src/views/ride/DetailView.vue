@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, type Ref } from 'vue';
 import { get, type Ride } from '../../composable/ride';
 
 const props = defineProps({
@@ -9,11 +9,11 @@ const props = defineProps({
   }
 });
 
-let ride: Ride = ref(null);
+let ride: Ref<Ride | null> = ref(null);
 
-onMounted(async () => ride = await get(props.rideId))
+onMounted(async () => ride.value = await get(props.rideId))
 </script>
 
 <template>
-  <h3>In progress {{ ride.name }}</h3>
+  <h3>In progress {{ ride?.name }}</h3>
 </template>
