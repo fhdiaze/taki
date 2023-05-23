@@ -14,3 +14,9 @@ body {
   font-size: 0.8em;
   font-weight: bold;
 }
+
+
+#app {
+  margin: 0 auto;
+  font-weight: normal;
+}

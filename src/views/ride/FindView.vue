@@ -1,27 +1,13 @@
-<template>
-  <section class="find">
-    <section class="criteria">
-      <form class="search" @submit.prevent="search">
-        <input id="search" type="search" placeholder="Search" v-model.trim="filter.search">
-        <button class="search" value="search">&nbsp;</button>
-      </form>
-    </section>
-
-    <Cards :rides="rides"></Cards>
-
-    <a class="more" @click="more" href="#">More</a>
-  </section>
-</template>
-
-<script setup>
+<script setup lang="ts">
 import * as ride from '../../composable/ride';
-import Cards from './Cards.vue';
+import Cards from './CardsView.vue';
 import { onBeforeMount, reactive } from 'vue';
+import { type Ride } from '../../composable/ride';
 
 let filter = reactive({
   search: null,
 });
-let rides = reactive([]);
+let rides: Ride[] = reactive([]);
 const cursor = {
   query: {
     name: filter.search,
@@ -53,11 +39,25 @@ const more = async () => {
   } else {
     rides.push(...moreRides);
   }
-
 };
 
 onBeforeMount(async () => await search());
 </script>
+
+<template>
+  <section class="find">
+    <section class="criteria">
+      <form class="search" @submit.prevent="search">
+        <input id="search" type="search" placeholder="Search" v-model.trim="filter.search">
+        <button class="search" value="search">&nbsp;</button>
+      </form>
+    </section>
+
+    <Cards :rides="rides" />
+
+    <a class="more" @click="more" href="#">More</a>
+  </section>
+</template>
 
 <style scoped>
 .find {

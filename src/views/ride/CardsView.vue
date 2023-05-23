@@ -1,6 +1,30 @@
+<script setup lang="ts">
+import moment from 'moment';
+import { type Ride } from '@/composable/ride';
+
+const props = defineProps({
+  rides: {
+    type: Array<Ride>,
+    required: true,
+  }
+});
+
+const formatDateTime = (instant: moment.Moment) => {
+  return moment(instant).format('YYYY/MM/DD HH:mm');
+};
+
+const assemblyTags = (ride: Ride) => {
+  const tags = [];
+  tags.push(ride.discipline);
+  tags.push(ride.category);
+
+  return tags;
+}
+</script>
+
 <template>
   <section class="cards">
-    <article class="card" v-for="ride in rides" :key="ride.id">
+    <article class="card" v-for="ride in props.rides" :key="ride.id">
       <section class="header">
         <h2 class="title">{{ ride.name }}</h2>
         <h3 class="subtitle">{{ formatDateTime(ride.startAt) }}</h3>
@@ -27,31 +51,6 @@
     </article>
   </section>
 </template>
-
-<script>
-import moment from 'moment';
-
-export default {
-  props: {
-    rides: {
-      type: Array,
-      required: true,
-    }
-  },
-  methods: {
-    formatDateTime(instant) {
-      return moment(instant).format('YYYY/MM/DD HH:mm');
-    },
-    assemblyTags(ride) {
-      const tags = [];
-      tags.push(ride.discipline);
-      tags.push(ride.category);
-
-      return tags;
-    }
-  }
-};
-</script>
 
 <style scoped>
 .cards {
@@ -121,7 +120,7 @@ export default {
   text-align: left;
   font-size: 1.25rem;
   margin: 0;
-   -webkit-box-orient: vertical;
+  -webkit-box-orient: vertical;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   overflow: hidden;
