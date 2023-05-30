@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import * as ride from '../api/ride';
 import { onBeforeMount, reactive } from 'vue';
-import { type Ride } from '../api/ride';
+import { type Ride, find } from '../api/ride';
 import moment from 'moment';
 
 let filter = reactive({
@@ -25,14 +24,14 @@ const search = async () => {
   cursor.query.description = filter.search;
   cursor.query.city = filter.search;
   cursor.query.country = filter.search;
-  const localRides = await ride.find(cursor);
+  const localRides = await find(cursor);
   rides.push(...localRides);
 };
 
 const more = async () => {
   filter.search = cursor.query.name;
   cursor.page++;
-  const moreRides = await ride.find(cursor);
+  const moreRides = await find(cursor);
 
   if (moreRides.length == 0) {
     cursor.page--;
