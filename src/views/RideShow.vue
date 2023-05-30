@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref, type Ref } from 'vue';
-import { get, type Ride } from '../../composable/ride';
+import { get, type Ride } from '../../services/ride';
 
 const props = defineProps({
   rideId: {
