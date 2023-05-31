@@ -1,9 +1,3 @@
-<script setup lang="ts">
-import { RouterView } from 'vue-router';
-import Header from './components/TakiHeader.vue';
-import Footer from './components/TakiFooter.vue';
-</script>
-
 <template>
   <Header />
   <main>
@@ -11,6 +5,12 @@ import Footer from './components/TakiFooter.vue';
   </main>
   <Footer />
 </template>
+
+<script setup lang="ts">
+import { RouterView } from 'vue-router';
+import Header from '@/components/TakiHeader.vue';
+import Footer from '@/components/TakiFooter.vue';
+</script>
 
 <style scoped>
 main {

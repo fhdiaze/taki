@@ -1,6 +1,47 @@
+<template>
+  <section class="find">
+    <section class="criteria">
+      <form class="search" @submit.prevent="search">
+        <input id="search" type="search" placeholder="Search" v-model.trim="filter.search">
+        <button class="search" value="search">&nbsp;</button>
+      </form>
+    </section>
+
+    <section class="cards">
+      <article class="card" v-for="ride in rides" :key="ride.id">
+        <section class="header">
+          <h2 class="title">{{ ride.name }}</h2>
+          <h3 class="subtitle">{{ formatDateTime(ride.startAt) }}</h3>
+          <section class="tags">
+            <span class="tag" v-for="tag in assemblyTags(ride)" :key="tag">{{ tag }}</span>
+          </section>
+        </section>
+
+        <section class="body">
+          <p class="desc">{{ ride.description }}</p>
+        </section>
+
+        <section class="footer">
+          <p class="distance">
+            {{ ride.route.distance }} km
+          </p>
+          <a class="website" :href="ride.website" target="_blank">
+            Details
+          </a>
+          <p class="elevation">
+            {{ ride.route.elevation }} m
+          </p>
+        </section>
+      </article>
+    </section>
+
+    <a class="more" @click="more" href="#">More</a>
+  </section>
+</template>
+
 <script setup lang="ts">
 import { onBeforeMount, reactive } from 'vue';
-import { type Ride, find } from '../api/ride';
+import { type Ride, find } from '@/api/ride';
 import moment from 'moment';
 
 let filter = reactive({
@@ -54,47 +95,6 @@ const assemblyTags = (ride: Ride) => {
 
 onBeforeMount(async () => await search());
 </script>
-
-<template>
-  <section class="find">
-    <section class="criteria">
-      <form class="search" @submit.prevent="search">
-        <input id="search" type="search" placeholder="Search" v-model.trim="filter.search">
-        <button class="search" value="search">&nbsp;</button>
-      </form>
-    </section>
-
-    <section class="cards">
-      <article class="card" v-for="ride in rides" :key="ride.id">
-        <section class="header">
-          <h2 class="title">{{ ride.name }}</h2>
-          <h3 class="subtitle">{{ formatDateTime(ride.startAt) }}</h3>
-          <section class="tags">
-            <span class="tag" v-for="tag in assemblyTags(ride)" :key="tag">{{ tag }}</span>
-          </section>
-        </section>
-
-        <section class="body">
-          <p class="desc">{{ ride.description }}</p>
-        </section>
-
-        <section class="footer">
-          <p class="distance">
-            {{ ride.route.distance }} km
-          </p>
-          <a class="website" :href="ride.website" target="_blank">
-            Details
-          </a>
-          <p class="elevation">
-            {{ ride.route.elevation }} m
-          </p>
-        </section>
-      </article>
-    </section>
-
-    <a class="more" @click="more" href="#">More</a>
-  </section>
-</template>
 
 <style scoped>
 .find {
