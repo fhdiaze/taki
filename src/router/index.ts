@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import Find from '../views/ride/FindView.vue';
-import NotFound from '../views/NotFoundView.vue';
+import RideFind from '@/views/RideFind.vue';
+import NotFound from '@/views/TakiNotFound.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -8,11 +8,11 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: Find
+      component: RideFind
     },
     {
       path: '/:catchAll(.*)',
-      name: 'NotFound',
+      name: 'TakiNotFound',
       component: NotFound,
     }
   ]

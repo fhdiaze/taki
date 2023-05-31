@@ -1,8 +1,48 @@
+<template>
+  <section class="find">
+    <section class="criteria">
+      <form class="search" @submit.prevent="search">
+        <input id="search" type="search" placeholder="Search" v-model.trim="filter.search">
+        <button class="search" value="search">&nbsp;</button>
+      </form>
+    </section>
+
+    <section class="cards">
+      <article class="card" v-for="ride in rides" :key="ride.id">
+        <section class="header">
+          <h2 class="title">{{ ride.name }}</h2>
+          <h3 class="subtitle">{{ formatDateTime(ride.startAt) }}</h3>
+          <section class="tags">
+            <span class="tag" v-for="tag in assemblyTags(ride)" :key="tag">{{ tag }}</span>
+          </section>
+        </section>
+
+        <section class="body">
+          <p class="desc">{{ ride.description }}</p>
+        </section>
+
+        <section class="footer">
+          <p class="distance">
+            {{ ride.route.distance }} km
+          </p>
+          <a class="website" :href="ride.website" target="_blank">
+            Details
+          </a>
+          <p class="elevation">
+            {{ ride.route.elevation }} m
+          </p>
+        </section>
+      </article>
+    </section>
+
+    <a class="more" @click="more" href="#">More</a>
+  </section>
+</template>
+
 <script setup lang="ts">
-import * as ride from '../../composable/ride';
-import Cards from './CardsView.vue';
 import { onBeforeMount, reactive } from 'vue';
-import { type Ride } from '../../composable/ride';
+import { type Ride, find } from '@/api/ride';
+import moment from 'moment';
 
 let filter = reactive({
   search: null,
@@ -25,14 +65,14 @@ const search = async () => {
   cursor.query.description = filter.search;
   cursor.query.city = filter.search;
   cursor.query.country = filter.search;
-  const localRides = await ride.find(cursor);
+  const localRides = await find(cursor);
   rides.push(...localRides);
 };
 
 const more = async () => {
   filter.search = cursor.query.name;
   cursor.page++;
-  const moreRides = await ride.find(cursor);
+  const moreRides = await find(cursor);
 
   if (moreRides.length == 0) {
     cursor.page--;
@@ -41,23 +81,20 @@ const more = async () => {
   }
 };
 
+const formatDateTime = (instant: moment.Moment) => {
+  return moment(instant).format('YYYY/MM/DD HH:mm');
+};
+
+const assemblyTags = (ride: Ride) => {
+  const tags = [];
+  tags.push(ride.discipline);
+  tags.push(ride.category);
+
+  return tags;
+}
+
 onBeforeMount(async () => await search());
 </script>
-
-<template>
-  <section class="find">
-    <section class="criteria">
-      <form class="search" @submit.prevent="search">
-        <input id="search" type="search" placeholder="Search" v-model.trim="filter.search">
-        <button class="search" value="search">&nbsp;</button>
-      </form>
-    </section>
-
-    <Cards :rides="rides" />
-
-    <a class="more" @click="more" href="#">More</a>
-  </section>
-</template>
 
 <style scoped>
 .find {
@@ -152,4 +189,157 @@ a.more {
   text-overflow: ellipsis;
   text-align: center;
 }
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex-direction: row;
+  grid-gap: 1.5rem;
+  padding: 10px;
+}
+
+.card {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 40% 50% 10%;
+  grid-template-areas:
+    "header"
+    "body"
+    "footer";
+  width: 320px;
+  height: 250px;
+  border-radius: 0.5rem;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  transition: all 0.2s ease-in-out;
+  background-color: #ffffff;
+  padding: 15px;
+}
+
+.card * {
+  min-width: 0px;
+  overflow: hidden;
+  overflow-wrap: normal;
+  white-space: break-spaces;
+  display: inline-block;
+}
+
+.card *:hover {
+  overflow: hidden;
+  text-overflow: clip;
+  overflow-wrap: normal;
+  white-space: break-spaces;
+  display: inline-block;
+}
+
+.card:hover {
+  transform: scale(1.005);
+  border: .1px solid #b217b4;
+}
+
+.card .header {
+  display: grid;
+  grid-area: "header";
+  grid-template-columns: 100%;
+  grid-template-rows: 50% 20% 30%;
+  grid-template-areas:
+    "title"
+    "subtitle"
+    "tags";
+  cursor: pointer;
+  text-align: left;
+}
+
+.card .header .title {
+  grid-area: "title";
+  --tw-text-opacity: 1;
+  color: rgb(17 24 39 / var(--tw-text-opacity));
+  text-align: left;
+  font-size: 1.25rem;
+  margin: 0;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+}
+
+.card .header .subtitle {
+  grid-area: subtitle;
+  --tw-text-opacity: 1;
+  color: rgb(107 114 128 / var(--tw-text-opacity));
+  text-align: left;
+  font-size: 0.75rem;
+  margin: 0;
+}
+
+.card .header .tags {
+  grid-area: tags;
+  text-align: left;
+  margin: auto 0;
+}
+
+.card .header .tags .tag {
+  font-weight: 500;
+  font-size: .8rem;
+  --tw-text-opacity: 1;
+  color: rgb(55 48 163 / var(--tw-text-opacity));
+  border-radius: 9999px;
+  margin-right: 0.5rem;
+  --tw-bg-opacity: 1;
+  background-color: rgb(224 231 255 / var(--tw-bg-opacity));
+  padding-left: .75rem;
+  padding-right: .75rem;
+}
+
+.card .body {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  grid-area: body;
+  cursor: pointer;
+}
+
+.card .body .desc {
+  --tw-text-opacity: 1;
+  color: rgb(107 114 128 / var(--tw-text-opacity));
+  text-align: left;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  margin-top: .5rem;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.card .footer {
+  display: grid;
+  grid-area: footer;
+  grid-template-columns: 25% 50% 25%;
+  grid-template-rows: 100%;
+  grid-template-areas: "distance website elevation";
+  font-size: small;
+  text-align: center;
+  align-items: self-end;
+}
+
+.card .footer .distance {
+  margin: 0;
+  grid-area: distance;
+  text-align: left;
+}
+
+.card .footer .website {
+  grid-area: website;
+  margin: 0;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.card .footer .elevation {
+  margin: 0;
+  grid-area: elevation;
+  text-align: right;
+}
+
 </style>
