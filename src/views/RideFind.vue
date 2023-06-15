@@ -2,7 +2,7 @@
   <section class="find">
     <section class="criteria">
       <form class="search" @submit.prevent="search">
-        <input id="search" type="search" placeholder="Search" v-model.trim="filter.search">
+        <input id="search" type="search" placeholder="Search" v-model.trim="filter.search" />
         <button class="search" value="search">&nbsp;</button>
       </form>
     </section>
@@ -22,15 +22,9 @@
         </section>
 
         <section class="footer">
-          <p class="distance">
-            {{ ride.route.distance }} km
-          </p>
-          <a class="website" :href="ride.website" target="_blank">
-            Details
-          </a>
-          <p class="elevation">
-            {{ ride.route.elevation }} m
-          </p>
+          <p class="distance">{{ ride.route.distance }} km</p>
+          <a class="website" :href="ride.website" target="_blank"> Details </a>
+          <p class="elevation">{{ ride.route.elevation }} m</p>
         </section>
       </article>
     </section>
@@ -40,14 +34,14 @@
 </template>
 
 <script setup lang="ts">
-import { onBeforeMount, reactive } from 'vue';
-import { type Ride, find } from '@/api/ride';
-import moment from 'moment';
+import { onBeforeMount, reactive } from 'vue'
+import { type Ride, find } from '@/api/ride'
+import moment from 'moment'
 
 let filter = reactive({
-  search: null,
-});
-let rides: Ride[] = reactive([]);
+  search: null
+})
+let rides: Ride[] = reactive([])
 const cursor = {
   query: {
     name: filter.search,
@@ -56,44 +50,44 @@ const cursor = {
     country: filter.search
   },
   page: 0,
-  size: 10,
-};
-
-const search = async () => {
-  rides.splice(0, rides.length);
-  cursor.query.name = filter.search;
-  cursor.query.description = filter.search;
-  cursor.query.city = filter.search;
-  cursor.query.country = filter.search;
-  const localRides = await find(cursor);
-  rides.push(...localRides);
-};
-
-const more = async () => {
-  filter.search = cursor.query.name;
-  cursor.page++;
-  const moreRides = await find(cursor);
-
-  if (moreRides.length == 0) {
-    cursor.page--;
-  } else {
-    rides.push(...moreRides);
-  }
-};
-
-const formatDateTime = (instant: moment.Moment) => {
-  return moment(instant).format('YYYY/MM/DD HH:mm');
-};
-
-const assemblyTags = (ride: Ride) => {
-  const tags = [];
-  tags.push(ride.discipline);
-  tags.push(ride.category);
-
-  return tags;
+  size: 10
 }
 
-onBeforeMount(async () => await search());
+const search = async () => {
+  rides.splice(0, rides.length)
+  cursor.query.name = filter.search
+  cursor.query.description = filter.search
+  cursor.query.city = filter.search
+  cursor.query.country = filter.search
+  const localRides = await find(cursor)
+  rides.push(...localRides)
+}
+
+const more = async () => {
+  filter.search = cursor.query.name
+  cursor.page++
+  const moreRides = await find(cursor)
+
+  if (moreRides.length == 0) {
+    cursor.page--
+  } else {
+    rides.push(...moreRides)
+  }
+}
+
+const formatDateTime = (instant: moment.Moment) => {
+  return moment(instant).format('YYYY/MM/DD HH:mm')
+}
+
+const assemblyTags = (ride: Ride) => {
+  const tags = []
+  tags.push(ride.discipline)
+  tags.push(ride.category)
+
+  return tags
+}
+
+onBeforeMount(async () => await search())
 </script>
 
 <style scoped>
@@ -116,24 +110,15 @@ form.search {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   border-radius: 6px;
-  -webkit-box-shadow:
-    0 2px 4px 0 rgba(72, 72, 72, 0.83),
-    0 10px 15px 0 rgba(126, 126, 126, 0.12),
-    0 -2px 6px 1px rgba(199, 199, 199, 0.55) inset,
-    0 2px 4px 2px rgba(255, 255, 255, 0.83) inset;
-  -moz-box-shadow:
-    0 2px 4px 0 rgba(72, 72, 72, 0.83),
-    0 10px 15px 0 rgba(126, 126, 126, 0.12),
-    0 -2px 6px 1px rgba(199, 199, 199, 0.55) inset,
-    0 2px 4px 2px rgba(255, 255, 255, 0.83) inset;
-  box-shadow:
-    0 2px 4px 0 rgba(72, 72, 72, 0.83),
-    0 10px 15px 0 rgba(126, 126, 126, 0.12),
-    0 -2px 6px 1px rgba(199, 199, 199, 0.55) inset,
-    0 2px 4px 2px rgba(255, 255, 255, 0.83) inset;
+  -webkit-box-shadow: 0 2px 4px 0 rgba(72, 72, 72, 0.83), 0 10px 15px 0 rgba(126, 126, 126, 0.12),
+    0 -2px 6px 1px rgba(199, 199, 199, 0.55) inset, 0 2px 4px 2px rgba(255, 255, 255, 0.83) inset;
+  -moz-box-shadow: 0 2px 4px 0 rgba(72, 72, 72, 0.83), 0 10px 15px 0 rgba(126, 126, 126, 0.12),
+    0 -2px 6px 1px rgba(199, 199, 199, 0.55) inset, 0 2px 4px 2px rgba(255, 255, 255, 0.83) inset;
+  box-shadow: 0 2px 4px 0 rgba(72, 72, 72, 0.83), 0 10px 15px 0 rgba(126, 126, 126, 0.12),
+    0 -2px 6px 1px rgba(199, 199, 199, 0.55) inset, 0 2px 4px 2px rgba(255, 255, 255, 0.83) inset;
 }
 
-input[type="search"] {
+input[type='search'] {
   width: 250px;
   height: 30px;
   padding-left: 5px;
@@ -142,26 +127,14 @@ input[type="search"] {
   color: #939393;
   font-weight: 500;
   background-color: #fffbf8;
-  -webkit-box-shadow:
-    0 -2px 2px 0 rgba(199, 199, 199, 0.55),
-    0 1px 1px 0 #fff,
-    0 2px 2px 1px #fafafa,
-    0 2px 4px 0 #b2b2b2 inset,
-    0 -1px 1px 0 #f2f2f2 inset,
+  -webkit-box-shadow: 0 -2px 2px 0 rgba(199, 199, 199, 0.55), 0 1px 1px 0 #fff,
+    0 2px 2px 1px #fafafa, 0 2px 4px 0 #b2b2b2 inset, 0 -1px 1px 0 #f2f2f2 inset,
     0 15px 15px 0 rgba(41, 41, 41, 0.09) inset;
-  -moz-box-shadow:
-    0 -2px 2px 0 rgba(199, 199, 199, 0.55),
-    0 1px 1px 0 #fff,
-    0 2px 2px 1px #fafafa,
-    0 2px 4px 0 #b2b2b2 inset,
-    0 -1px 1px 0 #f2f2f2 inset,
+  -moz-box-shadow: 0 -2px 2px 0 rgba(199, 199, 199, 0.55), 0 1px 1px 0 #fff, 0 2px 2px 1px #fafafa,
+    0 2px 4px 0 #b2b2b2 inset, 0 -1px 1px 0 #f2f2f2 inset,
     0 15px 15px 0 rgba(41, 41, 41, 0.09) inset;
-  box-shadow:
-    0 -2px 2px 0 rgba(199, 199, 199, 0.55),
-    0 1px 1px 0 #fff,
-    0 2px 2px 1px #fafafa,
-    0 2px 4px 0 #b2b2b2 inset,
-    0 -1px 1px 0 #f2f2f2 inset,
+  box-shadow: 0 -2px 2px 0 rgba(199, 199, 199, 0.55), 0 1px 1px 0 #fff, 0 2px 2px 1px #fafafa,
+    0 2px 4px 0 #b2b2b2 inset, 0 -1px 1px 0 #f2f2f2 inset,
     0 15px 15px 0 rgba(41, 41, 41, 0.09) inset;
 }
 
@@ -178,7 +151,7 @@ button.search {
   cursor: pointer;
 }
 
-input[type="search"]:focus {
+input[type='search']:focus {
   outline: 0;
 }
 
@@ -204,9 +177,9 @@ a.more {
   grid-template-columns: 100%;
   grid-template-rows: 40% 50% 10%;
   grid-template-areas:
-    "header"
-    "body"
-    "footer";
+    'header'
+    'body'
+    'footer';
   width: 320px;
   height: 250px;
   border-radius: 0.5rem;
@@ -234,24 +207,24 @@ a.more {
 
 .card:hover {
   transform: scale(1.005);
-  border: .1px solid #b217b4;
+  border: 0.1px solid #b217b4;
 }
 
 .card .header {
   display: grid;
-  grid-area: "header";
+  grid-area: 'header';
   grid-template-columns: 100%;
   grid-template-rows: 50% 20% 30%;
   grid-template-areas:
-    "title"
-    "subtitle"
-    "tags";
+    'title'
+    'subtitle'
+    'tags';
   cursor: pointer;
   text-align: left;
 }
 
 .card .header .title {
-  grid-area: "title";
+  grid-area: 'title';
   --tw-text-opacity: 1;
   color: rgb(17 24 39 / var(--tw-text-opacity));
   text-align: left;
@@ -282,15 +255,15 @@ a.more {
 
 .card .header .tags .tag {
   font-weight: 500;
-  font-size: .8rem;
+  font-size: 0.8rem;
   --tw-text-opacity: 1;
   color: rgb(55 48 163 / var(--tw-text-opacity));
   border-radius: 9999px;
   margin-right: 0.5rem;
   --tw-bg-opacity: 1;
   background-color: rgb(224 231 255 / var(--tw-bg-opacity));
-  padding-left: .75rem;
-  padding-right: .75rem;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
 }
 
 .card .body {
@@ -307,7 +280,7 @@ a.more {
   text-align: left;
   font-size: 1rem;
   margin-bottom: 0.5rem;
-  margin-top: .5rem;
+  margin-top: 0.5rem;
   text-align: justify;
   text-justify: inter-word;
 }
@@ -317,7 +290,7 @@ a.more {
   grid-area: footer;
   grid-template-columns: 25% 50% 25%;
   grid-template-rows: 100%;
-  grid-template-areas: "distance website elevation";
+  grid-template-areas: 'distance website elevation';
   font-size: small;
   text-align: center;
   align-items: self-end;
@@ -341,5 +314,4 @@ a.more {
   grid-area: elevation;
   text-align: right;
 }
-
 </style>
