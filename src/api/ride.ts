@@ -5,14 +5,18 @@ interface Route {
   distance: Number
 }
 
+interface Contact {
+  website: string
+}
+
 interface Ride {
   id: string
   name: string
   discipline: string
-  category: string
+  format: string
   startAt: moment.Moment
   description: string
-  website: string
+  contact: Contact
   route: Route
 }
 

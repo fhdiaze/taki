@@ -25,7 +25,7 @@
           <p class="distance">
             {{ ride.route.distance }} km
           </p>
-          <a class="website" :href="ride.website" target="_blank">
+          <a class="website" :href="ride.contact.website" target="_blank">
             Details
           </a>
           <p class="elevation">
@@ -88,7 +88,7 @@ const formatDateTime = (instant: moment.Moment) => {
 const assemblyTags = (ride: Ride) => {
   const tags = []
   tags.push(ride.discipline)
-  tags.push(ride.category)
+  tags.push(ride.format)
 
   return tags
 }
