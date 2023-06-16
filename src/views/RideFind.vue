@@ -40,14 +40,14 @@
 </template>
 
 <script setup lang="ts">
-import { onBeforeMount, reactive } from 'vue';
-import { type Ride, find } from '@/api/ride';
-import moment from 'moment';
+import { onBeforeMount, reactive } from 'vue'
+import { type Ride, find } from '@/api/ride'
+import moment from 'moment'
 
 let filter = reactive({
   search: null,
-});
-let rides: Ride[] = reactive([]);
+})
+let rides: Ride[] = reactive([])
 const cursor = {
   query: {
     name: filter.search,
@@ -57,43 +57,43 @@ const cursor = {
   },
   page: 0,
   size: 10,
-};
-
-const search = async () => {
-  rides.splice(0, rides.length);
-  cursor.query.name = filter.search;
-  cursor.query.description = filter.search;
-  cursor.query.city = filter.search;
-  cursor.query.country = filter.search;
-  const localRides = await find(cursor);
-  rides.push(...localRides);
-};
-
-const more = async () => {
-  filter.search = cursor.query.name;
-  cursor.page++;
-  const moreRides = await find(cursor);
-
-  if (moreRides.length == 0) {
-    cursor.page--;
-  } else {
-    rides.push(...moreRides);
-  }
-};
-
-const formatDateTime = (instant: moment.Moment) => {
-  return moment(instant).format('YYYY/MM/DD HH:mm');
-};
-
-const assemblyTags = (ride: Ride) => {
-  const tags = [];
-  tags.push(ride.discipline);
-  tags.push(ride.category);
-
-  return tags;
 }
 
-onBeforeMount(async () => await search());
+const search = async () => {
+  rides.splice(0, rides.length)
+  cursor.query.name = filter.search
+  cursor.query.description = filter.search
+  cursor.query.city = filter.search
+  cursor.query.country = filter.search
+  const localRides = await find(cursor)
+  rides.push(...localRides)
+}
+
+const more = async () => {
+  filter.search = cursor.query.name
+  cursor.page++
+  const moreRides = await find(cursor)
+
+  if (moreRides.length == 0) {
+    cursor.page--
+  } else {
+    rides.push(...moreRides)
+  }
+}
+
+const formatDateTime = (instant: moment.Moment) => {
+  return moment(instant).format('YYYY/MM/DD HH:mm')
+}
+
+const assemblyTags = (ride: Ride) => {
+  const tags = []
+  tags.push(ride.discipline)
+  tags.push(ride.category)
+
+  return tags
+}
+
+onBeforeMount(async () => await search())
 </script>
 
 <style scoped>
@@ -341,5 +341,4 @@ a.more {
   grid-area: elevation;
   text-align: right;
 }
-
 </style>

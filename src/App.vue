@@ -7,9 +7,9 @@
 </template>
 
 <script setup lang="ts">
-import { RouterView } from 'vue-router';
-import Header from '@/components/TakiHeader.vue';
-import Footer from '@/components/TakiFooter.vue';
+import { RouterView } from 'vue-router'
+import Header from '@/components/TakiHeader.vue'
+import Footer from '@/components/TakiFooter.vue'
 </script>
 
 <style scoped>
